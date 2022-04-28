@@ -39,7 +39,7 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
         - name: cloudcore
-          image: 041012/cloudcore:v2
+          image: 041012/cloudcore:{tag}
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: true
