@@ -16,7 +16,7 @@ data:
     modules:
       cloudHub:
         advertiseAddress:
-         - 192.168.15.29
+         - YOUR CLOUDCORE VIP HERE !!!
         nodeLimit: 10
         tlsCAFile: /etc/kubeedge/ca/rootCA.crt
         tlsCertFile: /etc/kubeedge/certs/server.crt
