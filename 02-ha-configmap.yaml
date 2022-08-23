@@ -17,7 +17,7 @@ data:
       cloudHub:
         advertiseAddress:
          - YOUR CLOUDCORE VIP HERE !!!
-        nodeLimit: 10
+        nodeLimit: 100000
         tlsCAFile: /etc/kubeedge/ca/rootCA.crt
         tlsCertFile: /etc/kubeedge/certs/server.crt
         tlsPrivateKeyFile: /etc/kubeedge/certs/server.key
