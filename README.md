@@ -1,10 +1,12 @@
-**CHANGES TO BE MADE**
+Resource removed from Cloudcore Deployment
+
+*CHANGES TO BE MADE*
 
 01-ha-prepare.yaml- NO CHANGES
 02-ha-configmap.yaml- (advertiseAddress - YOUR CLOUDCORE VIP HERE !!!, cloudStream: enable: false, dynamicController: enable: false)
 03-ha-deployment.yaml- (nodeSelector: [key]: [value], image: kubeedge/cloudcore:{tag})
 ------------------------------------------------------------------------------------------------------
-**#EXTRA ADDED IN 03-ha-deployment.yaml**
+*#EXTRA ADDED IN 03-ha-deployment.yaml*
 
 volumeMounts:
  - mountPath: /etc/kubeedge/certs/
