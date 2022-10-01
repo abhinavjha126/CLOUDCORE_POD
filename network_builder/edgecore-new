@@ -1,0 +1,110 @@
+apiVersion: edgecore.config.kubeedge.io/v1alpha1
+database:
+  aliasName: default
+  dataSource: /var/lib/kubeedge/edgecore.db
+  driverName: sqlite3
+kind: EdgeCore
+modules:
+  dbTest:
+    enable: false
+  deviceTwin:
+    enable: true
+  edgeHub:
+    enable: true
+    heartbeat: 15
+    httpServer: https://43.204.62.108:10002
+    projectID: e632aba927ea4ac2b575ec1603d56f10
+    quic:
+      enable: false
+      handshakeTimeout: 30
+      readDeadline: 15
+      server: 172.31.32.208:10001
+      writeDeadline: 15
+    rotateCertificates: true
+    tlsCaFile: /etc/kubeedge/ca/rootCA.crt
+    tlsCertFile: /etc/kubeedge/certs/server.crt
+    tlsPrivateKeyFile: /etc/kubeedge/certs/server.key
+    token: 5a67290d9726ef761a0709c64ccbb1a05e488191ec3fb6f974246491b362daf6.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjQ3NDAwOTN9.QVYGLkLsl-Zl7iq7tdGpQM3q8r2i5Bz6e6Zvb_kZ0UE
+    websocket:
+      url: wss://43.204.62.108:10000/e632aba927ea4ac2b575ec1603d56f10/edge1/events
+      enable: true
+      tlsCertFile: /etc/kubeedge/certs/server.crt
+      tlsPrivateKeyFile: /etc/kubeedge/certs/server.key
+      handshakeTimeout: 30
+      readDeadline: 15
+      writeDeadline: 15
+    controller:
+        protocol: websocket # websocket, quic
+        placement: false
+        heartbeat: 15  # second
+        refresh-ak-sk-interval: 10 # minute
+        auth-info-files-path: /var/IEF/secret
+        placement-url: https://172.31.32.208:7444/v1/placement_external/message_queue
+        project-id: e632aba927ea4ac2b575ec1603d56f10
+        node-id: edge1
+  edgeStream:
+    enable: false
+    handshakeTimeout: 30
+    readDeadline: 15
+    server: 43.204.62.108:10004
+    tlsTunnelCAFile: /etc/kubeedge/ca/rootCA.crt
+    tlsTunnelCertFile: /etc/kubeedge/certs/server.crt
+    tlsTunnelPrivateKeyFile: /etc/kubeedge/certs/server.key
+    writeDeadline: 15
+  edged:
+    cgroupDriver: systemd
+    cgroupRoot: ""
+    cgroupsPerQOS: true
+    clusterDNS: ""
+    clusterDomain: ""
+    cniBinDir: /opt/cni/bin
+    cniCacheDirs: /var/lib/cni/cache
+    cniConfDir: /etc/cni/net.d
+    concurrentConsumers: 5
+    devicePluginEnabled: false
+    dockerAddress: unix:///var/run/docker.sock
+    edgedMemoryCapacity: 7852396000
+    enable: true
+    enableMetrics: true
+    gpuPluginEnabled: false
+    hostnameOverride: edge1
+    imageGCHighThreshold: 80
+    imageGCLowThreshold: 40
+    imagePullProgressDeadline: 60
+    maximumDeadContainersPerPod: 1
+    networkPluginMTU: 1500
+    nodeIP: 172.31.32.208
+    nodeStatusUpdateFrequency: 10
+    podSandboxImage: kubeedge/pause:3.1
+    registerNode: true
+    registerNodeNamespace: default
+    remoteImageEndpoint: unix:///var/run/crio/crio.sock
+    remoteRuntimeEndpoint: unix:///var/run/crio/crio.sock
+    podsandbox-image: kubeedge/pause:3.1 # kubeedge/pause:3.1 for x86 arch , kubeedge/pause-arm:3.1 for arm arch, kubeedge/pause-arm64 for arm64 arch
+    runtimeRequestTimeout: 2
+    runtimeType: remote
+    volumeStatsAggPeriod: 60000000000
+  eventBus:
+    enable: true
+    eventBusTLS:
+      enable: false
+      tlsMqttCAFile: /etc/kubeedge/ca/rootCA.crt
+      tlsMqttCertFile: /etc/kubeedge/certs/server.crt
+      tlsMqttPrivateKeyFile: /etc/kubeedge/certs/server.key
+    mqttMode: 2
+    mqttQOS: 0
+    mqttRetain: false
+    mqttServerExternal: tcp://127.0.0.1:1883
+    mqttServerInternal: tcp://127.0.0.1:1884
+    mqttSessionQueueSize: 100
+  metaManager:
+    contextSendGroup: hub
+    contextSendModule: websocket
+    enable: true
+    metaServer:
+      debug: false
+      enable: false
+    podStatusSyncInterval: 60
+    remoteQueryTimeout: 60
+  serviceBus:
+    enable: false
