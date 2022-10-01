@@ -1,0 +1,97 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudcore
+  namespace: kubeedge
+  labels:
+    k8s-app: kubeedge
+    kubeedge: cloudcore
+data:
+  cloudcore.yaml: |
+    apiVersion: cloudcore.config.kubeedge.io/v1alpha1
+    kind: CloudCore
+    kubeAPIConfig:
+      kubeConfig: ""
+      master: ""
+      qps: 60000
+      burst: 80000
+    modules:
+      cloudHub:
+        advertiseAddress:
+         - 172.27.52.24
+        nodeLimit: 100000
+        tlsCAFile: /etc/kubeedge/ca/rootCA.crt
+        tlsCertFile: /etc/kubeedge/certs/server.crt
+        tlsPrivateKeyFile: /etc/kubeedge/certs/server.key
+        unixsocket:
+          address: unix:///var/lib/kubeedge/kubeedge.sock
+          enable: false
+        websocket:
+          address: 0.0.0.0
+          enable: true
+          port: 10000
+      cloudStream:
+         enable: true
+         streamPort: 10003
+         tlsStreamCAFile: /etc/kubeedge/ca/streamCA.crt
+         tlsStreamCertFile: /etc/kubeedge/certs/stream.crt
+         tlsStreamPrivateKeyFile: /etc/kubeedge/certs/stream.key
+         tlsTunnelCAFile: /etc/kubeedge/ca/rootCA.crt
+         tlsTunnelCertFile: /etc/kubeedge/certs/server.crt
+         tlsTunnelPrivateKeyFile: /etc/kubeedge/certs/server.key
+         tunnelPort: 10004
+      deviceController:
+        buffer:
+          deviceEvent: 1
+          deviceModelEvent: 1
+          updateDeviceStatus: 1024
+        context:
+          receiveModule: devicecontroller
+          responseModule: cloudhub
+          sendModule: cloudhub
+        enable: true
+        load:
+          updateDeviceStatusWorkers: 1
+      dynamicController:
+        enable: true
+      edgeController:
+        buffer:
+          configMapEvent: 102400
+          deletePod: 10240
+          endpointsEvent: 1
+          podEvent: 102400
+          queryConfigMap: 10240
+          queryEndpoints: 1
+          queryNode: 10240
+          queryPersistentVolume: 1
+          queryPersistentVolumeClaim: 1
+          querySecret: 10240
+          queryService: 1
+          queryVolumeAttachment: 1
+          ruleEndpointsEvent: 1
+          rulesEvent: 1
+          secretEvent: 1
+          serviceEvent: 10240
+          updateNode: 15240
+          updateNodeStatus: 30000
+          updatePodStatus: 102400
+        enable: true
+        load:
+          deletePodWorkers: 5000
+          queryConfigMapWorkers: 1000
+          queryEndpointsWorkers: 1
+          queryNodeWorkers: 5000
+          queryPersistentVolumeClaimWorkers: 1
+          queryPersistentVolumeWorkers: 1
+          querySecretWorkers: 1000
+          queryServiceWorkers: 1
+          queryVolumeAttachmentWorkers: 1
+          updateNodeStatusWorkers: 10000
+          updateNodeWorkers: 5000
+          updatePodStatusWorkers: 20000
+          ServiceAccountTokenWorkers: 10000
+        nodeUpdateFrequency: 30
+      router:
+        enable: false
+      syncController:
+        enable: true
