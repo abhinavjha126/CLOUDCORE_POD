@@ -25,7 +25,7 @@ data:
         tlsPrivateKeyFile: /etc/kubeedge/certs/server.key
         unixsocket:
           address: unix:///var/lib/kubeedge/kubeedge.sock
-          enable: false
+          enable: true
         websocket:
           address: 0.0.0.0
           enable: true
