@@ -28,8 +28,10 @@ modules:
     websocket:
       url: wss://43.204.62.108:10000/e632aba927ea4ac2b575ec1603d56f10/edge1/events
       enable: true
+      tlsCaFile: /etc/kubeedge/ca/rootCA.crt
       tlsCertFile: /etc/kubeedge/certs/server.crt
       tlsPrivateKeyFile: /etc/kubeedge/certs/server.key
+      server: 43.204.62.108:10000
       handshakeTimeout: 30
       readDeadline: 15
       writeDeadline: 15
