@@ -11,7 +11,7 @@ data:
     apiVersion: cloudcore.config.kubeedge.io/v1alpha1
     kind: CloudCore
     kubeAPIConfig:
-      kubeConfig: ""
+      kubeConfig: /root/.kube/config
       master: ""
       qps: 60000
       burst: 80000
