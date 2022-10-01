@@ -19,6 +19,7 @@ data:
          - YOUR CLOUDCORE VIP HERE !!!
         nodeLimit: 100000
         tlsCAFile: /etc/kubeedge/ca/rootCA.crt
+        tlsCAKeyFile: /etc/kubeedge/ca/rootCA.key
         tlsCertFile: /etc/kubeedge/certs/server.crt
         tlsPrivateKeyFile: /etc/kubeedge/certs/server.key
         unixsocket:
