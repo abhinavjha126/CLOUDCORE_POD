@@ -11,9 +11,18 @@ data:
     apiVersion: cloudcore.config.kubeedge.io/v1alpha1
     kind: CloudCore
     kubeAPIConfig:
-      kubeConfig: ""
+      kubeConfig: "/root/.kube/config"
       master: ""
     modules:
+      controller:
+        kube:
+          master: ""     # kube-apiserver address (such as:http://localhost:8080)
+          namespace: ""
+          content_type: "application/vnd.kubernetes.protobuf"
+          qps: 5
+          burst: 10
+          node_update_frequency: 10
+          kubeconfig: "/root/.kube/config"   #Enter absolute path to kubeconfig file to enable https connection to k8s apiserver.
       cloudHub:
         advertiseAddress:
          - YOUR CLOUDCORE VIP HERE !!!
@@ -40,6 +49,13 @@ data:
          tlsTunnelPrivateKeyFile: /etc/kubeedge/certs/server.key
          tunnelPort: 10004
       deviceController:
+        kube:
+          master: ""   # kube-apiserver address (such as:http://localhost:8080)
+          namespace: ""
+          content_type: "application/vnd.kubernetes.protobuf"
+          qps: 5
+          burst: 10
+          kubeconfig: "/root/.kube/config"   #Enter absolute path to kubeconfig file to enable https connection to k8s apiserver.
         buffer:
           deviceEvent: 1
           deviceModelEvent: 1
