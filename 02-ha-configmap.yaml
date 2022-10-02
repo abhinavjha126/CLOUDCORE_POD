@@ -35,6 +35,10 @@ data:
           address: unix:///var/lib/kubeedge/kubeedge.sock
           enable: true
         websocket:
+          tlsCAFile: /etc/kubeedge/ca/rootCA.crt
+          tlsCAKeyFile: /etc/kubeedge/ca/rootCA.key
+          tlsCertFile: /etc/kubeedge/certs/server.crt
+          tlsPrivateKeyFile: /etc/kubeedge/certs/server.key
           address: 0.0.0.0
           enable: true
           port: 10000
