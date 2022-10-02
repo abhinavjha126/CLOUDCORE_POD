@@ -11,7 +11,7 @@ data:
     apiVersion: cloudcore.config.kubeedge.io/v1alpha1
     kind: CloudCore
     kubeAPIConfig:
-      kubeConfig: "/root/.kube/config"
+      kubeConfig: ""
       master: ""
     modules:
       controller:
