@@ -1,0 +1,122 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudcore
+  namespace: kubeedge
+  labels:
+    k8s-app: kubeedge
+    kubeedge: cloudcore
+data:
+  cloudcore.yaml: |
+    apiVersion: cloudcore.config.kubeedge.io/v1alpha1
+    kind: CloudCore
+    kubeAPIConfig:
+      kubeConfig: ""
+      master: ""
+    modules:
+      controller:
+        kube:
+          master: ""     # kube-apiserver address (such as:http://localhost:8080)
+          content_type: "application/vnd.kubernetes.protobuf"
+          qps: 60000
+          burst: 80000
+          node_update_frequency: 30
+          kubeconfig: "/root/.kube/config"   #Enter absolute path to kubeconfig file to enable https connection to k8s apiserver.
+      cloudHub:
+        advertiseAddress:
+         - YOUR CLOUDCORE VIP HERE !!!
+        nodeLimit: 100000
+        tlsCAFile: /etc/kubeedge/ca/rootCA.crt
+        tlsCAKeyFile: /etc/kubeedge/ca/rootCA.key
+        tlsCertFile: /etc/kubeedge/certs/server.crt
+        tlsPrivateKeyFile: /etc/kubeedge/certs/server.key
+        unixsocket:
+          address: unix:///var/lib/kubeedge/kubeedge.sock
+          enable: true
+        websocket:
+          tlsCAFile: /etc/kubeedge/ca/rootCA.crt
+          tlsCAKeyFile: /etc/kubeedge/ca/rootCA.key
+          tlsCertFile: /etc/kubeedge/certs/server.crt
+          tlsPrivateKeyFile: /etc/kubeedge/certs/server.key
+          address: 0.0.0.0
+          enable: true
+          port: 10000
+      cloudStream:
+         enable: true
+         streamPort: 10003
+         tlsStreamCAFile: /etc/kubeedge/ca/streamCA.crt
+         tlsStreamCertFile: /etc/kubeedge/certs/stream.crt
+         tlsStreamPrivateKeyFile: /etc/kubeedge/certs/stream.key
+         tlsTunnelCAFile: /etc/kubeedge/ca/rootCA.crt
+         tlsTunnelCertFile: /etc/kubeedge/certs/server.crt
+         tlsTunnelPrivateKeyFile: /etc/kubeedge/certs/server.key
+         tunnelPort: 10004
+      deviceController:
+        kube:
+          master: ""   # kube-apiserver address (such as:http://localhost:8080)
+          content_type: "application/vnd.kubernetes.protobuf"
+          qps: 60000
+          burst: 80000
+          kubeconfig: "/root/.kube/config"   #Enter absolute path to kubeconfig file to enable https connection to k8s apiserver.
+        buffer:
+          deviceEvent: 1
+          deviceModelEvent: 1
+          updateDeviceStatus: 10240
+        context:
+          receiveModule: devicecontroller
+          responseModule: cloudhub
+          sendModule: cloudhub
+        enable: true
+        load:
+          updateDeviceStatusWorkers: 1
+      dynamicController:
+        enable: true
+      edgeController:
+        buffer:
+          configMapEvent: 102400
+          deletePod: 10240
+          endpointsEvent: 1
+          podEvent: 102400
+          queryConfigMap: 10240
+          queryEndpoints: 1
+          queryNode: 10240
+          queryPersistentVolume: 1
+          queryPersistentVolumeClaim: 1
+          querySecret: 10240
+          queryService: 1
+          queryVolumeAttachment: 1
+          ruleEndpointsEvent: 1
+          rulesEvent: 1
+          secretEvent: 1
+          serviceEvent: 10240
+          updateNode: 15240
+          updateNodeStatus: 30000
+          updatePodStatus: 102400
+        context:
+          receiveModule: edgecontroller
+          responseModule: cloudhub
+          sendModule: cloudhub
+          sendRouterModule: router
+        enable: true
+        load:
+          deletePodWorkers: 5000
+          queryConfigMapWorkers: 1000
+          queryEndpointsWorkers: 1
+          queryNodeWorkers: 5000
+          queryPersistentVolumeClaimWorkers: 1
+          queryPersistentVolumeWorkers: 1
+          querySecretWorkers: 1000
+          queryServiceWorkers: 1
+          queryVolumeAttachmentWorkers: 1
+          updateNodeStatusWorkers: 10000
+          updateNodeWorkers: 5000
+          updatePodStatusWorkers: 20000
+          ServiceAccountTokenWorkers: 10000
+        nodeUpdateFrequency: 30
+      router:
+        address: 0.0.0.0
+        port: 9443
+        restTimeout: 60
+        enable: true
+      syncController:
+        enable: false
