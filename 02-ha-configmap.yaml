@@ -61,7 +61,7 @@ data:
         buffer:
           deviceEvent: 1
           deviceModelEvent: 1
-          updateDeviceStatus: 10240
+          updateDeviceStatus: 1024
         context:
           receiveModule: devicecontroller
           responseModule: cloudhub
@@ -73,25 +73,25 @@ data:
         enable: true
       edgeController:
         buffer:
-          configMapEvent: 102400
-          deletePod: 10240
+          configMapEvent: 1
+          deletePod: 1024
           endpointsEvent: 1
-          podEvent: 102400
-          queryConfigMap: 10240
-          queryEndpoints: 1
-          queryNode: 10240
-          queryPersistentVolume: 1
-          queryPersistentVolumeClaim: 1
-          querySecret: 10240
-          queryService: 1
-          queryVolumeAttachment: 1
+          podEvent: 1
+          queryConfigMap: 1024
+          queryEndpoints: 1024
+          queryNode: 1024
+          queryPersistentVolume: 1024
+          queryPersistentVolumeClaim: 1024
+          querySecret: 1024
+          queryService: 1024
+          queryVolumeAttachment: 1024
           ruleEndpointsEvent: 1
           rulesEvent: 1
           secretEvent: 1
-          serviceEvent: 10240
-          updateNode: 15240
-          updateNodeStatus: 30000
-          updatePodStatus: 102400
+          serviceEvent: 1
+          updateNode: 1024
+          updateNodeStatus: 1024
+          updatePodStatus: 1024
         context:
           receiveModule: edgecontroller
           responseModule: cloudhub
@@ -99,24 +99,23 @@ data:
           sendRouterModule: router
         enable: true
         load:
-          deletePodWorkers: 5000
-          queryConfigMapWorkers: 1000
-          queryEndpointsWorkers: 1
-          queryNodeWorkers: 5000
-          queryPersistentVolumeClaimWorkers: 1
-          queryPersistentVolumeWorkers: 1
-          querySecretWorkers: 1000
-          queryServiceWorkers: 1
-          queryVolumeAttachmentWorkers: 1
-          updateNodeStatusWorkers: 10000
-          updateNodeWorkers: 5000
-          updatePodStatusWorkers: 20000
-          ServiceAccountTokenWorkers: 10000
-        nodeUpdateFrequency: 30
+          deletePodWorkers: 4
+          queryConfigMapWorkers: 4
+          queryEndpointsWorkers: 4
+          queryNodeWorkers: 4
+          queryPersistentVolumeClaimWorkers: 4
+          queryPersistentVolumeWorkers: 4
+          querySecretWorkers: 4
+          queryServiceWorkers: 4
+          queryVolumeAttachmentWorkers: 4
+          updateNodeStatusWorkers: 1
+          updateNodeWorkers: 4
+          updatePodStatusWorkers: 1
+        nodeUpdateFrequency: 10
       router:
         address: 0.0.0.0
         port: 9443
         restTimeout: 60
         enable: true
       syncController:
-        enable: false
+        enable: true
