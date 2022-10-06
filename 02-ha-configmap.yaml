@@ -16,7 +16,6 @@ data:
       content_type: "application/vnd.kubernetes.protobuf"
       qps: 5
       burst: 10
-      
     modules:
       cloudHub:
         advertiseAddress:
