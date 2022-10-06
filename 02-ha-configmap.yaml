@@ -14,8 +14,8 @@ data:
       kubeConfig: ""
       master: ""
       content_type: "application/vnd.kubernetes.protobuf"
-      qps: 5
-      burst: 10
+      qps: 60000
+      burst: 80000
     modules:
       cloudHub:
         advertiseAddress:
@@ -107,4 +107,4 @@ data:
         restTimeout: 60
         enable: true
       syncController:
-        enable: true
+        enable: false
