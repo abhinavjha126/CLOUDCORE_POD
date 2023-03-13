@@ -1,0 +1,27 @@
+apiVersion: v1
+data:
+  cloudcore.yaml: "apiVersion: cloudcore.config.kubeedge.io/v1alpha2\nkind: CloudCore\nkubeAPIConfig:\n
+    \ kubeConfig: \"\"\n  master: \"\"\nmodules:\n  cloudHub:\n    advertiseAddress:\n
+    \   - 13.235.187.33\n    dnsNames:\n    - \n    nodeLimit: 1000\n    tlsCAFile:
+    /etc/kubeedge/ca/rootCA.crt\n    tlsCertFile: /etc/kubeedge/certs/edge.crt\n    tlsPrivateKeyFile:
+    /etc/kubeedge/certs/edge.key\n    unixsocket:\n      address: unix:///var/lib/kubeedge/kubeedge.sock\n
+    \     enable: true\n    websocket:\n      address: 0.0.0.0\n      enable: true\n
+    \     port: 10000\n    quic:\n      address: 0.0.0.0\n      enable: false\n      maxIncomingStreams:
+    10000\n      port: 10001\n    https:\n      address: 0.0.0.0\n      enable: true\n
+    \     port: 10002\n  cloudStream:\n    enable: true\n    streamPort: 10003\n    tunnelPort:
+    10004\n  dynamicController:\n    enable: true\n  router:\n    enable: false\n
+    \ iptablesManager:\n    enable: true\n    mode: internal\n"
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: cloudcore
+    meta.helm.sh/release-namespace: kubeedge
+  creationTimestamp: "2023-03-12T14:43:47Z"
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    k8s-app: kubeedge
+    kubeedge: cloudcore
+  name: cloudcore
+  namespace: kubeedge
+  resourceVersion: "111240"
+  uid: e9355be7-7c2b-431a-9d89-f9d54ed3441c
