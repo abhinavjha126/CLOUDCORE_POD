@@ -12,12 +12,12 @@ data:
           advertiseAddress:
           - 172.31.15.212
           - 13.235.187.33
-        - nodeName: testing2
-          advertiseAddress:
-          - 172.31.4.82
-        - nodeName: testing3
-          advertiseAddress:
-          - 172.31.0.118
+        #- nodeName: testing2
+        #  advertiseAddress:
+        #  - 172.31.4.82
+        #- nodeName: testing3
+        #  advertiseAddress:
+        # - 172.31.0.118
 kind: ConfigMap
 metadata:
   annotations:
