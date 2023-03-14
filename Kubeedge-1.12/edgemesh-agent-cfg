@@ -31,3 +31,33 @@ metadata:
   namespace: kubeedge
   resourceVersion: "89510"
   uid: 583a2b64-ecfe-4179-b79a-c3d79841a0b4
+---------------------------------------------------------------------------------------------------------------------------------
+WORKING (PREFER THIS ONE)
+
+apiVersion: v1
+data:
+  edgemesh-agent.yaml: |
+    # For more detailed configuration, please refer to: https://edgemesh.netlify.app/reference/config-items.html#edgemesh-agent-cfg
+    modules:
+      edgeProxy:
+        enable: true
+      edgeTunnel:
+        enable: true
+        relayNodes:
+        - nodeName: testing1
+          advertiseAddress:
+          - 172.31.15.212
+          - 13.235.187.33
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"edgemesh-agent.yaml":"# For more detailed configuration, please refer to: https://edgemesh.netlify.app/reference/config-items.html#edgemesh-agent-cfg\nmodules:\n  edgeProxy:\n    enable: true\n  edgeTunnel:\n    enable: true\n    relayNodes:\n    - nodeName: testing1 testing1\n      advertiseAddress:\n      - 172.31.15.21213.235.187.33\n    - nodeName: testing2\n      advertiseAddress:\n      - 172.31.4.82\n    - nodeName: testing3\n      advertiseAddress:\n      - 172.31.0.118\n    - nodeName: edge1\n      advertiseAddress:\n      - 172.31.12.149\n"},"kind":"ConfigMap","metadata":{"annotations":{},"labels":{"k8s-app":"kubeedge","kubeedge":"edgemesh-agent"},"name":"edgemesh-agent-cfg","namespace":"kubeedge"}}
+  creationTimestamp: "2023-03-12T15:04:30Z"
+  labels:
+    k8s-app: kubeedge
+    kubeedge: edgemesh-agent
+  name: edgemesh-agent-cfg
+  namespace: kubeedge
+  resourceVersion: "172073"
+  uid: 583a2b64-ecfe-4179-b79a-c3d79841a0b4
