@@ -174,7 +174,7 @@ modules:
     server: 127.0.0.1
     timeout: 60
     --------------------------------------------------------------------------------------------------------------------------------
-    apiVersion: edgecore.config.kubeedge.io/v1alpha2
+apiVersion: edgecore.config.kubeedge.io/v1alpha2
 database:
   aliasName: default
   dataSource: /var/lib/kubeedge/edgecore.db
