@@ -43,7 +43,7 @@ data:
         streamPort: 10003   
         tunnelPort: 10004  
       dynamicController:    
-        enable: false
+        enable: true
       router:    
         enable: false
       iptablesManager:    
