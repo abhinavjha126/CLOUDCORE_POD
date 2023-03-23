@@ -8,3 +8,9 @@ clusterDNS:
 metaServer:
   enable: true
 ```
+```bash
+Cloudcore file changes
+
+dynamicController:   
+  enable: true
+```
