@@ -1,4 +1,10 @@
 ```bash
+edgeProxy:
+  enable: true
+  
+because of this microservice is able to open through GUI also logs come
+```
+```bash
 Edgecore file changes
 vi /etc/kubeedge/config/edgecore.yaml
 
