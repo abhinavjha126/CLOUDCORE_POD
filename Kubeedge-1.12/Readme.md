@@ -6,11 +6,17 @@ clusterDNS:
 Responsible for net not working on the edge server (Microservice net not working mozilla firefox)
 
 2). In edgemesh-agent-cfg (hub server configmap kubeedge ns)
+edgeDNS:
+  enable: true
+  listenPort: 53
+Responsible for events on the edge server (Microservice events)
+
+3). In edgemesh-agent-cfg (hub server configmap kubeedge ns)
 edgeProxy:
   enable: true 
 because of this microservice is able to open through GUI (Microservice)
 
-3). In cat /etc/kubeedge/config/edgecore.yaml
+4). In cat /etc/kubeedge/config/edgecore.yaml
 edgeStream:
   enable: true
 Responsible for events on the edge server (Microservice events)
