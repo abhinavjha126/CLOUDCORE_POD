@@ -1,0 +1,51 @@
+kubectl edit cm -n kubeedge cloudcore
+
+cloudcore.yaml: "apiVersion: cloudcore.config.kubeedge.io/v1alpha2\nkind: CloudCore\nkubeAPIConfig:\n
+    \ kubeConfig: \"\" \n  master: \"\"\n  qps: 60\n  burst: 60\nmodules:  \n  cloudHub:
+    \   \n    advertiseAddress:\n    - 3.6.2.191\n    dnsNames:\n    - \n    nodeLimit:
+    100000  \n    tlsCAFile: /etc/kubeedge/ca/rootCA.crt\n    tlsCertFile: /etc/kubeedge/certs/edge.crt
+    \   \n    tlsPrivateKeyFile: /etc/kubeedge/certs/edge.key\n    unixsocket:      \n
+    \     address: unix:///var/lib/kubeedge/kubeedge.sock      \n      enable: true
+    \   \n    websocket:      \n      address: 0.0.0.0      \n      enable: true      \n
+    \     port: 10000    \n    quic:      \n      address: 0.0.0.0      \n      enable:
+    false    \n      maxIncomingStream: 10000      \n      port: 10001    \n    https:
+    \     \n      address: 0.0.0.0      \n      enable: true\n      port: 10002  \n
+    \ cloudStream:    \n    enable: true    \n    streamPort: 10003   \n    tunnelPort:
+    10004\n  dynamicController:    \n    enable: true\n  router:    \n    enable:
+    false\n  iptablesManager:    \n    enable: true   \n    mode: internal\n"
+----------------------------------------------------------------------------------------------------------------
+kubectl edit cm -n kubeedge edgemesh-agent-cfg
+
+edgemesh-agent.yaml: |
+    # For more detailed configuration, please refer to: https://edgemesh.netlify.app/reference/config-items.html#edgemesh-agent-cfg
+    commonConfig:
+      bridgeDeviceName: edgemesh0
+      bridgeDeviceIP: 169.254.96.16
+    modules:
+      edgeDNS:
+        enable: true
+        listenPort: 53
+      edgeProxy:
+        enable: true
+      edgeTunnel:
+        enable: true
+        listenPort: 20006
+        relayNodes:
+        - nodeName: kabali1
+          advertiseAddress:
+          -  3.6.2.191
+ ----------------------------------------------------------------------------------------------------------------
+ kubectl edit cm -n kubeedge edgemesh-gateway-cfg
+ 
+ edgemesh-gateway.yaml: |
+    # For more detailed configuration, please refer to: https://edgemesh.netlify.app/reference/config-items.html#edgemesh-gateway-cfg
+    modules:
+      edgeGateway:
+        enable: true
+      edgeTunnel:
+        enable: true
+        listenPort: 20006
+        relayNodes:
+        - nodeName: kabali1
+          advertiseAddress:
+          - 3.6.2.191
